@@ -1,0 +1,52 @@
+<div class="container">
+
+    <form #form="ngForm" role="form" (submit)="onSubmit(form.value)">
+
+
+        <legend>Angular Form (Template-Driven) using ngForm</legend>
+
+        <div class="form-group">
+            <label for="first_name">First Name (Btw 5-10 letters)</label>
+            <input #spy ngModel name="firstname" pattern=".{5,10}" required type="text" class="form-control"
+                id="first_name" placeholder="First Name">
+        </div>
+        <div>
+            Debug: {{spy.className}}
+        </div>
+
+        <div class="form-group">
+            <label for="last_name">Last Name</label>
+            <input ngModel name="lastname" required type="text" class="form-control" id="last_name"
+                placeholder="Last Name">
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input #spy_phone ngModel name="phone" required type="number" class="form-control" id="phone" placeholder="phone">
+            <span>Debug: {{form.value.phone}} : {{spy_phone.className}}</span>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input ngModel name="email" required type="text" class="form-control" id="email" placeholder="Email">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input #password ngModel name="password" required type="password" class="form-control" id="password"
+                placeholder="Password">
+        </div>
+
+        <div class="form-group">
+            <label for="confirm_password">Confirmed Password</label>
+            <input #confirm_password ngModel name="confirm_password" required type="password" class="form-control"
+                id="password" placeholder="Password">
+        </div>
+
+        <button [disabled]="!form.valid || (password.value != confirm_password.value)" type="submit"
+            class="btn btn-primary">Submit</button>
+        <span>{{form.value | json}}</span>
+
+    </form>
+
+</div>
